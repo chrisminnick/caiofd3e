@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice Template</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+      }
+
+      th,
+      td {
+        border: 2px solid #000;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #e0e0e0;
+        font-weight: bold;
+      }
+
+      /* Highlight cells with colspan attribute */
+      [colspan] {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        border: 4px double #000;
+        font-size: 1.1em;
+        letter-spacing: 1px;
+      }
+
+      /* Add visual indicator for rowspan cells */
+      [rowspan] {
+        background-color: #f5f5f5;
+        border-left: 5px solid #000;
+        font-weight: bold;
+      }
+
+      td {
+        background-color: #fff;
+      }
+
+      tr:hover td {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Order #</th>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Unit Price</th>
+      </tr>
+      <tr>
+        <th colspan="4">Labor</th>
+      </tr>
+      <tr>
+        <td rowspan="2">A1042</td>
+        <td>Design review</td>
+        <td>1</td>
+        <td>$150</td>
+      </tr>
+      <tr>
+        <td>Implementation (2 hrs)</td>
+        <td>2</td>
+        <td>$125</td>
+      </tr>
+      <tr>
+        <th colspan="4">Parts</th>
+      </tr>
+      <tr>
+        <td>—</td>
+        <td>Replacement cable</td>
+        <td>1</td>
+        <td>$12</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Total</strong></td>
+        <td><strong>$412</strong></td>
+      </tr>
+    </table>
+  </body>
+</html>
