@@ -1,0 +1,5 @@
+"Talk is cheap. Show me the code." - Linus Torvalds (added on 2026-03-13)
+"Make it work, make it right, make it fast." - Kent Beck (added on 2026-03-13)
+"The 3 virtues of a programmer: Laziness, impatience, and hubris." - Larry Wall (added on 2026-03-13)
+"People think that computer science is the art of geniuses but the actual reality is the opposite, just many people doing things that build on each other, like a wall of mini stones." (added on 2026-03-13)
+"A clever person solves a problem. A wise person avoids it." (added on 2026-03-13)
