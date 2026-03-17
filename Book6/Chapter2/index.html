@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello!</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f0f4ff, #fdf6ff, #fff8f0);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+        position: relative;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 10vw, 8rem);
+        font-weight: 800;
+        background: linear-gradient(90deg, #d4006e, #e85d00, #0077cc, #d4006e);
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 4s linear infinite;
+        letter-spacing: -2px;
+        filter: drop-shadow(0 0 20px rgba(212, 0, 110, 0.2));
+      }
+
+      .subtitle {
+        margin-top: 1rem;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 1.2rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        animation: fadeIn 1.5s ease forwards;
+      }
+
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        animation: float linear infinite;
+        opacity: 0;
+      }
+
+      .btn {
+        margin-top: 2.5rem;
+        display: inline-block;
+        padding: 0.8rem 2.5rem;
+        border: 2px solid rgba(0, 0, 0, 0.18);
+        border-radius: 50px;
+        color: #333;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        animation: fadeIn 2s ease forwards;
+      }
+
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(0, 0, 0, 0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 300% center;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="particles" id="particles"></canvas>
+
+    <div class="container">
+      <h1>Hello, Friends!</h1>
+      <p class="subtitle">Welcome to JavaScript</p>
+      <button class="btn" onclick="burst()">Say Hello ✨</button>
+    </div>
+
+    <script>
+      // Floating particles
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ["#d4006e", "#e85d00", "#0077cc", "#7c3aed", "#0891b2"];
+      let particles = [];
+
+      function createParticle(x, y, burst = false) {
+        return {
+          x: x ?? Math.random() * canvas.width,
+          y: y ?? canvas.height + 10,
+          r: burst ? Math.random() * 6 + 2 : Math.random() * 3 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speedX: burst ? (Math.random() - 0.5) * 8 : (Math.random() - 0.5) * 1,
+          speedY: burst
+            ? -(Math.random() * 10 + 5)
+            : -(Math.random() * 1.5 + 0.5),
+          gravity: burst ? 0.2 : 0,
+          life: 1,
+          decay: burst ? Math.random() * 0.02 + 0.01 : 0.004,
+        };
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Spawn background floaters
+        if (Math.random() < 0.3) particles.push(createParticle());
+
+        particles.forEach((p, i) => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.speedY += p.gravity;
+          p.life -= p.decay;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = Math.max(p.life, 0);
+          ctx.fill();
+          ctx.globalAlpha = 1;
+
+          if (p.life <= 0) particles.splice(i, 1);
+        });
+
+        requestAnimationFrame(animateParticles);
+      }
+
+      animateParticles();
+
+      // Burst effect on button click
+      function burst() {
+        const btn = document.querySelector(".btn");
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        for (let i = 0; i < 60; i++) {
+          particles.push(createParticle(cx, cy, true));
+        }
+      }
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
+  </body>
+</html>
