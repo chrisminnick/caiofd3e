@@ -27,4 +27,6 @@ dist/
 .dynamodb/
 .tern-port/
 coverage/
-.nyc_output/Icon
+.nyc_output/
+Icon
+
