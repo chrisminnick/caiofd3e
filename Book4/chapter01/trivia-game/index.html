@@ -1,0 +1,27 @@
+<!--
+Homepage for trivia game about Machine Learning.
+This game will display one multiple-choice question at
+a time, using JavaScript that gets data
+from data/trivia.js.
+Possible answers will be displayed with radio buttons
+to their left. When a radio button is clicked, the
+user will be shown a new random question.
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machine Learning Trivia Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Machine Learning Trivia Game</h1>
+    <div id="question-container">
+      <p id="question"></p>
+      <div id="answers"></div>
+    </div>
+    <script src="data/trivia.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
