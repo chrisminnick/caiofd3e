@@ -63,7 +63,7 @@ removed from the repo.
 | bk04ch01 | AI terms, NLP, transformers/tokens, limitations of AI | none | **resolved — no companion code**: read the full 16-page proof (not just the "IN THIS CHAPTER" bullets). It's entirely conceptual prose — AI/ML/DL/GenAI definitions, neural-network layers, NLP history (ELIZA/ALICE), supervised vs. unsupervised learning, transformers/self-attention/tokens, responsible-AI practices, GPT/generative-model limitations. No "Listing" captions, no filenames, no "available with this book's example files" note, and no code blocks at all (only prose and figures/screenshots, e.g., the OpenAI Tokenizer screenshots in Figures 1-9/1-10). Same situation as bk01ch01/02. Nothing to move or create. (Batch3-Errors.md's GPT-3/GPT-3.5, "non-directional"/"non-directive", and SNN-acronym notes are prose/terminology errata only — no code affected.) |
 | bk04ch02 | Prompt engineering, coding with chatbots | none | **resolved — no companion code**: read the full 6-page proof. Covers prompt anatomy (instruction/context/input/output-format), open- vs. closed-ended prompts, zero-shot/few-shot prompting, and custom-instruction blocks — all illustrated with short inline example text, not numbered listings or files. The few-shot example shown (`test_slugify_basic`) is a preview of the real, fully-worked `slugify(text)` example that's actually built out in bk04ch03 (see below); it isn't a distinct companion-file listing in this chapter. No filenames or "example files" references anywhere. Nothing to move or create. (Batch3-Errors.md's unformatted "bread and" example-prompt note is a typesetting issue only.) |
 | bk04ch03 | Chatbots → agents, project requirements, coding a prototype with prompts | **correction of prior mapping** — see below | **resolved — new code created; prior "CONFIRMED" mapping to `Book4/chapter01` was WRONG** |
-| bk04ch04 | Finding/eliminating bugs, refactoring, AI-assisted testing | unidentified | to confirm |
+| bk04ch04 | Finding/eliminating bugs, refactoring, AI-assisted testing | none | **resolved — no companion code**: read the full 16-page proof. Covers bug taxonomy, static analysis/linting, AI-assisted debugging, dependency hygiene, code smells and refactoring, code formatters, test plans/AI-generated tests/TDD, code translation between languages, profiling/optimization, and the four types of maintenance (corrective/adaptive/perfective/preventative) plus technical debt. Every example (e.g., a buggy `sum_numbers(a, b)` returning `"a + b"` as a string) is a tiny inline illustration with no listing number, caption, or filename — same pattern as bk01ch01/02 and bk04ch01. Nothing to move or create. (Batch3-Errors.md's garbled "× 2" placeholder-name note on p.330 is a typesetting erratum only, doesn't affect any code.) |
 
 ### bk04ch03 correction — the trivia-game/todo-app mapping was wrong
 
@@ -129,11 +129,21 @@ prompt examples were treated — not captured as separate companion files.
   are now empty of files (everything moved into `bk02/`) but the directories themselves
   may still exist as empty shells — harmless, git doesn't track them.
 
-## Next steps
-1. For each "to confirm" / "unidentified" row above, read the full chapter proof text
-   (not just the chapter-opener bullets) to find listing captions/numbers and match
-   them against old repo files or determine the content is new and needs a fresh listing.
-2. Rename matched files/folders to `bk0Xch0Y...` convention (mirroring what's already
-   done in Book1).
-3. Fix code to match what's printed in the proofs; flag anything that can't be resolved.
-4. Commit per chapter on the `3e-code-update` branch.
+## Status: bk01–bk04 fully reconciled — this minibook is done
+
+With bk04ch01–ch04 resolved above, **all four proofed minibooks (bk01, bk02, bk03,
+bk04 — 20 chapters total) are now fully reconciled** against their 3rd-edition page
+proofs and committed on `3e-code-update`. `Book1`–`Book3` (the old 2nd-edition-derived
+folders for those minibooks) have been fully migrated and removed; `Book4` retains
+only the still-unmatched `chapter01/` content noted in the Deferred section above,
+left in place on purpose pending future proofs.
+
+`bk05`–`bk07` (and whatever `Book8` turns out to be) remain **pending** — no page
+proofs have been received from the layout team for those minibooks yet. `Book5`,
+`Book6`, and `Book7` are believed to map to HTML/CSS, JavaScript, and React/Vue
+content respectively (see the Deferred section above for specifics), but nothing in
+those folders should be touched until their proofs arrive: old chapter numbers have
+already been shown to be unreliable indicators of new-edition placement (bk02ch02,
+bk04ch03) and content has turned out to be misfiled or absent more than once in this
+project, so each remaining minibook needs the same full read-the-proof-first
+treatment applied here before anything gets renamed, fixed, or moved.
