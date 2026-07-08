@@ -1,15 +1,14 @@
 {
-  "name": "book1",
+  "name": "bk01ch04",
   "version": "1.0.0",
-  "description": "",
-  "main": "bk01ch04fg004.js",
+  "description": "Companion code for Book 1, Chapter 4 (How Coding Benefits from AI)",
+  "main": "listing0402.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^7.1.0",
-    "mongoose": "^7.0.0"
+    "mongoose": "7.1.0"
   }
 }

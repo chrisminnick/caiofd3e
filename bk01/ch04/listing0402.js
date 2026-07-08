@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/todo-list');
+mongoose.connect('mongodb://localhost/todo-list', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 // Define a TodoItem schema
 const todoItemSchema = new mongoose.Schema({
   title: String,
