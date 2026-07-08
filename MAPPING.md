@@ -8,8 +8,10 @@ belongs in the new edition. Confirmed mismatch: `Book4/chapter01` (trivia-game +
 "Prompt:"-commented script.js) actually belongs in **bk04ch03**, not bk04ch01.
 Mapping below is based on matching actual code/content against the page proofs.
 
-Proofs received so far (batches 1–3): bk01–bk04 only. bk05–bk07 (likely HTML/CSS,
-JavaScript, React/Vue based on old Book5/6/7 content) are pending from the layout team.
+Proofs received so far (batches 1–4): bk01–bk05 fully reconciled; bk06ch01 (batch 4)
+is the only bk06 proof received so far. bk06 (remaining chapters) and bk07 (likely
+JavaScript and React/Vue based on old Book6/7 content) are still pending from the
+layout team.
 
 ## Part 1 — bk01: Getting Started with Coding
 
@@ -111,10 +113,24 @@ generated spec itself, and the code-generation prompt) are illustrative prose
 elements without listing captions or filenames, consistent with how bk04ch02's
 prompt examples were treated — not captured as separate companion files.
 
+## Part 5 — bk05: Basic Web Coding (HTML/CSS) (RESOLVED — all 5 chapters reconciled)
+
+| New chapter | Topic (from proof) | New location | Status |
+|---|---|---|---|
+| bk05ch01 | Exploring Basic HTML: elements, attributes, document structure, headings, paragraphs, hyperlinks, images, text formatting, building a first website | `bk05/ch01/bk05ch01fg002.html` .. `fg011.html` + `bk05/ch01/figures/` | **resolved** (old `Book5/chapter01` → new ch01, confirmed) — moved and renamed `figureNNNN.html` → `bk05ch01fgNNN.html`. Fixed fg003 (Figure 1-3, `title`/`hidden` attributes) to use the `&apos;` HTML entity in "won't" to match the proof's listing source exactly (renders identically either way). Fixed fg009 (Figure 1-9, images example): removed invalid `width="49%" valign="top"` attributes on the `<img>` tags — `valign` isn't a valid HTML5 `img` attribute, and the proof's listing shows plain `<img src=... alt=...>` with no sizing attributes. fg011 (Figure 1-11, superscript/subscript) needed no fix — already correctly uses `H<sub>2</sub>O` (letter O); the proof itself has a typo showing a digit "0" in that spot, judgment call to keep the chemically-correct letter O since that's clearly the intended code. Removed `Book5/chapter01/images/` (two unused JPGs — all image figures load Wikimedia URLs directly, never local files) and `index.html` (a redundant duplicate of fg009's code, folded in). Everything else matched the proof exactly. All files verified well-formed with Python's `html.parser`. |
+| bk05ch02 | Getting More Out of HTML: organizing content, lists, tables (incl. colspan/rowspan), forms | `bk05/ch02/bk05ch02fg004.html`, `fg006.html`, `fg007.html`, `fg008.html` + `bk05/ch02/figures/` | **resolved** (old `Book5/chapter02` → new ch02, confirmed) — moved and renamed `fg0502NN.html`/`colspan.html` → `bk05ch02fgNNN.html` (keyed to the proof's Figure 2-N numbers). All four files (Listing 2-1 nested lists, the basic-table-structuring example incl. its "Table Components" legend box, the colspan/rowspan invoice table, and Listing 2-2's contact form) already matched the proof exactly — confirmed via the rendered screenshots' own visible URL bars (e.g. `.../Book5/chapter02/fg050206.html`), which show the "extra" styling/legend content in the old files is genuinely part of the intended page, not stray cruft; the proof's printed code excerpts are just trimmed for the page. No content changes needed. Note: Figure 2-5's screenshot in the proof appears to be a mislabeled/wrong image (shows a generic to-do-list mockup instead of the described Box.com pricing table) — a proofing issue, not a code issue; no companion file exists or is needed for it either way. |
+| bk05ch03 | Understanding the Elements of Style: CSS structure, selectors, text/link/background-image styling, inline vs. embedded vs. external CSS | `bk05/ch03/bk05ch03fg002.html`, `fg009.html`, `bk05ch03_practice.html` + `bk05/ch03/figures/` | **resolved** (old `Book5/chapter03` → new ch03, confirmed) — fg002 (Figure 3-2, `h1{font-family:cursive}` + Largest-IPOs list) and fg009 (Figure 3-9, full-page background-image demo) already matched the proof exactly. `practice.html` renamed to `bk05ch03_practice.html` and kept as-is — it's the boilerplate DOCTYPE/head/body starter template the "Practicing with CSS" section instructs readers to save before adding their own `<style>` and content. **Removed** `Book5/chapter03/grid-example.html`: verified byte-for-byte identical to `Book5/chapter05/listing0508.html` (the real CSS Grid Listing 5-8 from Chapter 5). CSS Grid is never mentioned anywhere in ch03's proof (confirmed via full-text search) — this was a stray misplaced duplicate; the genuine copy is reconciled under bk05ch05 instead. |
+| bk05ch04 | Next Steps with CSS: styling lists/tables, parent/child/descendant selectors, id/class naming, the box model, float/clear page layout | `bk05/ch04/bk05ch04_listing01.html` .. `_listing04.html`, `bk05ch04fg005.html`, `fg006.html` + `bk05/ch04/figures/`, `bk05/ch04/images/tapas.png` | **resolved** (old `Book5/chapter04` → new ch04, confirmed) — renamed `listingNNNN.html` → `bk05ch04_listingNN.html` (matching the proof's Listing 4-N numbers, same convention as bk02ch07). Fixed listing01 (Listing 4-1) to use `&apos;` in "World's Highest Mountains" to match the proof's listing source. Fixed listing03 (Listing 4-3): HTML content already matched, but its `<title>` read "Useful Links" (an earlier-edition leftover) — corrected to `<title>Figure 4-4: DOM</title>` to match the proof verbatim. listing02 and listing04 already matched exactly. **Created two new files** not present in the old repo: `bk05ch04fg005.html` and `bk05ch04fg006.html`, for Figures 4-5 and 4-6 (child-selector `p > a {...}` and descendant-selector `ul a {...}` demos) — the proof shows the CSS for each applied to Listing 4-3's HTML, and the old `Book5/figures/` folder had PNG screenshots saved for both (fg050405.png, fg050406.png) with no matching HTML source, strong evidence these were meant to be real companion files. Did **not** fabricate files for Figures 4-11/4-13 (div box-model demos) — only tiny CSS snippets shown, no saved PNG evidence of a dedicated file, consistent with how purely-illustrative inline snippets were treated elsewhere in this project. |
+| bk05ch05 | Responsive Layouts with Flexbox and Grid: viewport meta tag, Flexbox containers/direction/wrap/order, CSS Grid | `bk05/ch05/bk05ch05_listing01.html` .. `_listing08.html` + `bk05/ch05/figures/` | **resolved** (old `Book5/chapter05` → new ch05, confirmed) — renamed `listingNNNN.html` → `bk05ch05_listingNN.html` (matching the proof's Listing 5-N numbers). Listings 1-7 already matched the proof's code content exactly; fixed `<!doctype html>` → `<!DOCTYPE html>` (uppercase) on all seven to match the proof's listing text verbatim, and reformatted listing07's order-styled divs (trailing semicolons, number on its own line) to match the proof's exact formatting — cosmetic only, same rendered result. Listing08 (Listing 5-8, CSS Grid Example) needed no DOCTYPE fix — the proof itself uses lowercase `<!doctype html>` for this one listing, unlike 5-1 through 5-7 — and is also the canonical copy of the file that was stray-duplicated into bk05ch03 as `grid-example.html` (removed there). Figures 5-7 through 5-11 (align-items/justify-content/flex-grow/flex-shrink) are small inline snippets with no saved PNG evidence of a dedicated companion file (unlike bk05ch04's Figures 4-5/4-6); no new files created for these. |
+
+Old `Book5/` (all five `chapter0N/` subfolders and the shared `figures/` folder) has
+been fully migrated into `bk05/` and removed from the repo — every HTML/CSS file had
+a confirmed match in the bk05ch01–ch05 proofs (unlike bk04's `chapter01/`, nothing in
+`Book5/` needed to be left behind in the Deferred section).
+
 ## Deferred (no proofs yet)
 
-- `Book5/` (HTML/CSS — index.html, grid-example, figures) → likely bk05 or bk06
-- `Book6/` (JavaScript listings, ball-game, weather API) → likely bk06 or bk07
+- `Book6/` (JavaScript listings, ball-game, weather API) → likely bk06 or bk07. bk06ch01's proof has arrived (Batch 4) but the rest of bk06 hasn't, so `Book6/` is intentionally NOT touched in this pass — revisit once more bk06 proofs arrive.
 - `Book7/` (React `my-react-app`, Vue `vue-project`) → likely bk07
 - `Book8/` — empty, unclear purpose
 - `Book4/chapter01/` (`trivia-game/` — `index.html`/`style.css`/`data/trivia.js` — plus
@@ -129,21 +145,25 @@ prompt examples were treated — not captured as separate companion files.
   are now empty of files (everything moved into `bk02/`) but the directories themselves
   may still exist as empty shells — harmless, git doesn't track them.
 
-## Status: bk01–bk04 fully reconciled — this minibook is done
+## Status: bk01–bk05 fully reconciled
 
-With bk04ch01–ch04 resolved above, **all four proofed minibooks (bk01, bk02, bk03,
-bk04 — 20 chapters total) are now fully reconciled** against their 3rd-edition page
-proofs and committed on `3e-code-update`. `Book1`–`Book3` (the old 2nd-edition-derived
-folders for those minibooks) have been fully migrated and removed; `Book4` retains
-only the still-unmatched `chapter01/` content noted in the Deferred section above,
-left in place on purpose pending future proofs.
+With bk05ch01–ch05 resolved above, **five proofed minibooks (bk01, bk02, bk03, bk04,
+bk05 — 25 chapters total) are now fully reconciled** against their 3rd-edition page
+proofs and committed on `3e-code-update`. `Book1`–`Book3` and `Book5` (the old
+2nd-edition-derived folders for those minibooks) have been fully migrated and
+removed; `Book4` retains only the still-unmatched `chapter01/` content noted in the
+Deferred section above, left in place on purpose pending future proofs.
 
-`bk05`–`bk07` (and whatever `Book8` turns out to be) remain **pending** — no page
-proofs have been received from the layout team for those minibooks yet. `Book5`,
-`Book6`, and `Book7` are believed to map to HTML/CSS, JavaScript, and React/Vue
-content respectively (see the Deferred section above for specifics), but nothing in
-those folders should be touched until their proofs arrive: old chapter numbers have
-already been shown to be unreliable indicators of new-edition placement (bk02ch02,
-bk04ch03) and content has turned out to be misfiled or absent more than once in this
-project, so each remaining minibook needs the same full read-the-proof-first
-treatment applied here before anything gets renamed, fixed, or moved.
+`bk06`–`bk07` (and whatever `Book8` turns out to be) remain **pending** — only
+bk06ch01's proof has arrived so far (Batch 4), and no proofs at all have been
+received for bk07 or the rest of bk06. `Book6` and `Book7` are believed to map to
+JavaScript and React/Vue content respectively (see the Deferred section above for
+specifics), but nothing in those folders should be touched until their proofs
+arrive: old chapter numbers have already been shown to be unreliable indicators of
+new-edition placement (bk02ch02, bk04ch03) and content has turned out to be
+misfiled, absent, or duplicated/misplaced across chapters more than once in this
+project (bk04ch03's trivia-game mismatch; bk05ch03's stray `grid-example.html`
+duplicate of bk05ch05's Listing 5-8), so each remaining minibook needs the same
+full read-the-proof-first treatment applied here before anything gets renamed,
+fixed, or moved. Once more bk06 proofs arrive, bk06ch01 can be reconciled on its
+own or held until the full minibook's proofs are in — reviewer's call at that time.
