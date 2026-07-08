@@ -62,8 +62,54 @@ removed from the repo.
 |---|---|---|---|
 | bk04ch01 | AI terms, NLP, transformers/tokens, limitations of AI | none | **resolved — no companion code**: read the full 16-page proof (not just the "IN THIS CHAPTER" bullets). It's entirely conceptual prose — AI/ML/DL/GenAI definitions, neural-network layers, NLP history (ELIZA/ALICE), supervised vs. unsupervised learning, transformers/self-attention/tokens, responsible-AI practices, GPT/generative-model limitations. No "Listing" captions, no filenames, no "available with this book's example files" note, and no code blocks at all (only prose and figures/screenshots, e.g., the OpenAI Tokenizer screenshots in Figures 1-9/1-10). Same situation as bk01ch01/02. Nothing to move or create. (Batch3-Errors.md's GPT-3/GPT-3.5, "non-directional"/"non-directive", and SNN-acronym notes are prose/terminology errata only — no code affected.) |
 | bk04ch02 | Prompt engineering, coding with chatbots | none | **resolved — no companion code**: read the full 6-page proof. Covers prompt anatomy (instruction/context/input/output-format), open- vs. closed-ended prompts, zero-shot/few-shot prompting, and custom-instruction blocks — all illustrated with short inline example text, not numbered listings or files. The few-shot example shown (`test_slugify_basic`) is a preview of the real, fully-worked `slugify(text)` example that's actually built out in bk04ch03 (see below); it isn't a distinct companion-file listing in this chapter. No filenames or "example files" references anywhere. Nothing to move or create. (Batch3-Errors.md's unformatted "bread and" example-prompt note is a typesetting issue only.) |
-| bk04ch03 | Chatbots → agents, project requirements, coding a prototype with prompts | `Book4/chapter01/` (trivia-game, script.js, listing040101.py todo app) | **confirmed** — script.js literally contains a "Prompt: ..." comment matching this chapter's theme |
+| bk04ch03 | Chatbots → agents, project requirements, coding a prototype with prompts | **correction of prior mapping** — see below | **resolved — new code created; prior "CONFIRMED" mapping to `Book4/chapter01` was WRONG** |
 | bk04ch04 | Finding/eliminating bugs, refactoring, AI-assisted testing | unidentified | to confirm |
+
+### bk04ch03 correction — the trivia-game/todo-app mapping was wrong
+
+The mapping notes carried into this pass asserted that `Book4/chapter01/` (the
+`trivia-game/` folder — `index.html`/`style.css`/`data/trivia.js` — plus `script.js`
+with a "Prompt: Write a JavaScript module for a multiple-choice trivia game..."
+header comment, and `listing040101.py`, a sqlite3/dataclass todo-list module) was a
+**confirmed** match for bk04ch03, based on the "Prompt:" comment style matching this
+chapter's theme.
+
+That confirmation does not hold up against the actual proof. bk04ch03's full
+12-page text (read page-by-page as rendered images, not just `pdftotext`) never
+mentions a trivia game, a quiz app, machine-learning trivia questions, or a
+todo/task-list app anywhere — not in the body text, not in a figure, not in a
+screenshot. A targeted search of all four bk04 proof texts for `triviaData`,
+`TodoItem`, `sqlite3`, `getRandomQuestion`, `showQuestion`, `handleAnswer`,
+`dataclass`, and "trivia"/"todo" turned up zero matches. The chapter's one and
+only worked example, start to finish (spec -> test -> implementation), is a
+**`slugify(text)` function**, which independently corroborates
+`Batch3-Errors.md`'s own note: *"the slugify(text) code sample and its test on
+page 316 were executed and exactly match the printed output and surrounding
+prose"* — no mention of a trivia game or todo app there either, and that review
+covered all 12 pages.
+
+**Conclusion:** the trivia-game project and the sqlite3 todo-list module are not
+bk04ch03 (or bk04ch01/02/04 — confirmed absent from those too, see rows above).
+They've been left in place under `Book4/chapter01/` and moved to the Deferred
+section below rather than force-migrated into `bk04/`, since they don't match any
+currently-proofed chapter. `bk04/ch03/` was built fresh from the real proof content
+instead:
+
+| File | Content |
+|---|---|
+| `bk04/ch03/myproj/text.py` | The `slugify(text)` implementation from p.316 (`unicodedata.normalize` + `re.sub` pipeline), placed at the exact module path (`myproj.text`) the book's own test imports from. |
+| `bk04/ch03/test_slugify.py` | The `test_slugify_basic()` pytest test from p.316 (`from myproj.text import slugify`). |
+
+Verified with `python3 -m pytest`: 1 passed. Also manually sanity-checked the
+function against the edge cases the chapter's own prompts call out (unicode
+`"Café Münchën"` → `"cafe-munchen"`, empty string → `""`, punctuation-only
+`"!!!???"` → `""`) — all behave sensibly, though only the basic test is actually
+printed in the proof, so only that one was added to the repo (no fabricated tests
+added beyond what's shown). The chapter's various "copy this into your chatbot/
+agent" prompt examples (the agent-task prompt, the spec-generation prompt, the
+generated spec itself, and the code-generation prompt) are illustrative prose
+elements without listing captions or filenames, consistent with how bk04ch02's
+prompt examples were treated — not captured as separate companion files.
 
 ## Deferred (no proofs yet)
 
@@ -71,6 +117,12 @@ removed from the repo.
 - `Book6/` (JavaScript listings, ball-game, weather API) → likely bk06 or bk07
 - `Book7/` (React `my-react-app`, Vue `vue-project`) → likely bk07
 - `Book8/` — empty, unclear purpose
+- `Book4/chapter01/` (`trivia-game/` — `index.html`/`style.css`/`data/trivia.js` — plus
+  `script.js` and `listing040101.py`, a sqlite3/dataclass todo-list module) — investigated
+  thoroughly against all four bk04 proofs (see the bk04ch03 correction note above) and
+  confirmed to match none of them. Left in place, untouched. May belong to a later,
+  not-yet-proofed minibook (a JS-focused chapter in bk05/06/07) or may be obsolete
+  2nd-edition-era scaffolding; revisit once those proofs arrive.
 - `Book2/figures/fg020102.png`, `Book2/figures/fg020103.png` — two leftover 2nd-edition
   figure images under the old `Book2/` root (not `chapter2/`); no corresponding code to
   reconcile, left in place. `Book2/chapter2/`, `chapter5/`, `chapter6/`, and `chapter7/`
