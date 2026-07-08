@@ -15,7 +15,7 @@ JavaScript, React/Vue based on old Book5/6/7 content) are pending from the layou
 
 | New chapter | Topic (from proof) | Old source | Status |
 |---|---|---|---|
-| bk01ch01 | What is coding? How programming works, survey of languages | none identified yet — likely new/rewritten prose, minimal code | to confirm |
+| bk01ch01 | What is coding? How programming works, survey of languages | none — **confirmed**: prose/conceptual chapter only. Read the full chapter (not just the opener bullets); it contains no "Listing" captions, no "available with this book's example files" note, and no runnable code — only tiny inline illustrations (a machine-code/assembly snippet, a `printf("Hello, World!")` fragment, and an HTML `<script>` tag example). Nothing to move or create. | **resolved — no companion code** |
 | bk01ch02 | Variables, data types, objects, expressions, functions (language-agnostic) | none identified yet | to confirm |
 | bk01ch03 | First looks at Python & JS, peek at other languages (incl. assembly, PHP) | none identified yet | to confirm |
 | bk01ch04 | Automating tasks, syntax help, testing, AI-assisted learning (Mongoose/MongoDB + phone-validator example per proof errata) | `Book1/` (validatePhoneNumber.js, mongoose/mongodb listings, bk01ch04fg* assets) | **confirmed**, already partially renamed correctly |
