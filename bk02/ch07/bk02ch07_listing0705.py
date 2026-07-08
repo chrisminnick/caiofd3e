@@ -12,7 +12,7 @@ dx = point2[0] - point1[0]
 dy = point2[1] - point1[1]
   
 # Apply the Pythagorean theorem:
-# distance = @@sq(dx² + dy²)
+# distance = √(dx² + dy²)
 distance = math.sqrt(dx**2 + dy**2)
   
 print(f"The distance between the points is: {distance:.2f}")
