@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  var question = prompt('Ask magic 8 ball a question');
-  var answer = Math.floor(Math.random() * 8) + 1;
+  let question = prompt('Ask magic 8 ball a question');
+  let answer = Math.floor(Math.random() * 8) + 1;
   if (answer == 1) {
     alert('It is certain');
   } else if (answer == 2) {
@@ -17,8 +17,5 @@ document.addEventListener('DOMContentLoaded', function () {
     alert('My reply is no');
   } else if (answer == 8) {
     alert('My sources say no');
-  } else {
-    alert("That's not a question");
   }
-  alert('The end');
 });
