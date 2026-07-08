@@ -60,7 +60,7 @@ removed from the repo.
 
 | New chapter | Topic (from proof) | Old source | Status |
 |---|---|---|---|
-| bk04ch01 | AI terms, NLP, transformers/tokens, limitations of AI | unidentified | to confirm — likely all-new prose |
+| bk04ch01 | AI terms, NLP, transformers/tokens, limitations of AI | none | **resolved — no companion code**: read the full 16-page proof (not just the "IN THIS CHAPTER" bullets). It's entirely conceptual prose — AI/ML/DL/GenAI definitions, neural-network layers, NLP history (ELIZA/ALICE), supervised vs. unsupervised learning, transformers/self-attention/tokens, responsible-AI practices, GPT/generative-model limitations. No "Listing" captions, no filenames, no "available with this book's example files" note, and no code blocks at all (only prose and figures/screenshots, e.g., the OpenAI Tokenizer screenshots in Figures 1-9/1-10). Same situation as bk01ch01/02. Nothing to move or create. (Batch3-Errors.md's GPT-3/GPT-3.5, "non-directional"/"non-directive", and SNN-acronym notes are prose/terminology errata only — no code affected.) |
 | bk04ch02 | Prompt engineering, coding with chatbots | unidentified | to confirm |
 | bk04ch03 | Chatbots → agents, project requirements, coding a prototype with prompts | `Book4/chapter01/` (trivia-game, script.js, listing040101.py todo app) | **confirmed** — script.js literally contains a "Prompt: ..." comment matching this chapter's theme |
 | bk04ch04 | Finding/eliminating bugs, refactoring, AI-assisted testing | unidentified | to confirm |
