@@ -128,9 +128,53 @@ been fully migrated into `bk05/` and removed from the repo — every HTML/CSS fi
 a confirmed match in the bk05ch01–ch05 proofs (unlike bk04's `chapter01/`, nothing in
 `Book5/` needed to be left behind in the Deferred section).
 
+## Part 6 — bk06: JavaScript Fundamentals (IN PROGRESS)
+
+Old `Book6/` numbered its chapter folders 1, 2, 3, 5, 6, 7, 8, 9, 10 — skipping 4.
+Before reconciling, the working theory (per the reviewer's own note) was that this
+gap signaled a renumbering/merge somewhere in the new bk06 (which only has 9
+chapters, ch01-ch09). **That theory turned out to be wrong.** Content-by-content
+comparison (not just old/new chapter numbers) shows old chapters map 1:1 to new
+chapters with NO shift at all: old Chapter1 (ball game) = new ch01, old Chapter2
+(Node/VS Code/Git toolbox) = new ch02, old Chapter3 (template literal) = new ch03,
+old Chapter5 (switch/for-in/while/do-while) = new ch05, old Chapter6 (array->HTML
+list) = new ch06, old Chapter7 (constructors/classes/Object.create) = new ch07, old
+Chapter8 (functions/callbacks/this) = new ch08, old Chapter9 (classes/inheritance/
+static/private fields) = new ch09 — every one confirmed by matching actual code
+content against the proofs, not just listing counts.
+
+The real explanation for the missing old `Chapter4` folder: new bk06ch04 ("Working
+with Operators and Expressions") is a prose/reference chapter with zero numbered
+Listings and zero filenames anywhere in its 9-page proof — only inline
+expression/operator snippets and two reference tables (comparison and arithmetic
+operators). There was never any companion code file for this chapter in either
+edition, so there was never a folder for it in the old repo either. No merge or
+renumbering occurred; ch04 (both old and new) simply never had a listing.
+
+The real mystery instead is old `Chapter10/` (`Listing1001-1003.html`: mouse
+tracking, event bubbling, `dispatchEvent`/`addEventListener` fundamentals). Its
+content doesn't match any of the 9 proofed bk06 chapters — but **two separate
+forward-references inside the ch01 and ch08 proofs** ("You can read all about
+events and event listeners in Chapter 10 in this minibook," p.589; "the modern way
+of responding to events... `addEventListener`... Chapter 10 of this minibook,"
+p.466) show the author's manuscript still assumes a Chapter 10 on events exists.
+Since only ch01-ch09 were proofed/exist in the final TOC, this looks like a
+dangling cross-reference left over from a late restructuring that cut (or never
+commissioned proofs for) an Events chapter. `Book6/Chapter10/` is left in place,
+untouched, and called out in the Deferred section below rather than force-fit
+into any of the 9 real chapters — its content (mouse tracking, bubbling,
+`dispatchEvent`) doesn't appear anywhere in ch01-ch09's text.
+
+| New chapter | Topic (from proof) | New location | Status |
+|---|---|---|---|
+| bk06ch01 | Jumping into JavaScript: how the web/front-end/back-end works, dev environment setup (VS Code), first program, running JS in console/browser/file, the ball-game keydown demo | `bk06/ch01/bk06ch01_listing01.js`, `bk06ch01_listing02.html`, `bk06ch01fg010.html`, `bk06/ch01/ball-game/gamelet.js`, `ball-game/gamelet.html` | **resolved** (old `Book6/Chapter1` → new ch01, confirmed) — moved and renamed. Fixed `bk06ch01_listing01.js` (Listing 1-1, Name Creator program): the old `listing1-1.js` had gotten corrupted with stray blank lines and a mid-statement line break around `let normalName =`; restored to the proof's clean 3-line form and verified with `node` that it prints exactly "Your JavaScript Name is ChrisScript" (matching Figure 1-12). Fixed `bk06ch01_listing02.html` (Listing 1-2, inline JavaScript): content already matched, added the proof's nested indentation (old file was flush-left). Fixed `ball-game/gamelet.js` (Listing 1-3): per **Batch4-Errors.md**'s noted "lost indentation" erratum, reformatted with standard nested indentation; also restored a real missing block — the old file was missing the `if (position > 800) { position = 800; }` upper-bound clamp that the proof's Listing 1-3 includes (old file only clamped the lower bound at 0). Verified via a stubbed-DOM simulation in `node`: 85 right-arrow presses now correctly clamp at `800px` and subsequent left-arrow presses clamp back down to `0px`. Fixed `ball-game/gamelet.html` (Listing 1-4): per the same erratum, reformatted with nested indentation, and fixed `#ball`'s `position: relative` → `position: absolute` to match the proof exactly (the CSS property the ball-drag logic actually depends on). Kept the `ball-game/` subfolder and the `gamelet.js`/`gamelet.html` filenames exactly as the book's own instructions specify ("save it as `gamelet.js`" / "save it as `gamelet.html`"). Renamed old `Chapter1/index.html` (the blank Emmet-generated boilerplate that exactly matches Figure 1-10's rendered code) to `bk06ch01fg010.html`. The proof's own screenshots (Figure 2-5, taken in ch02) show the author's real VS Code file tree with these exact old filenames (`listing1-1.js`, `listing1-2.html`, `listing1-3.js`, `ball-game/`), confirming this was the author's actual working structure. Did **not** fix the p.448 127.0.0.1-as-DNS-example erratum or the Ctrl+/⌘+dash/spacing inconsistencies (Batch4-Errors.md) — those are prose/typesetting issues, not code. |
+| bk06ch02 | Filling Your JavaScript Toolbox: installing Node.js, configuring VS Code (Prettier, Live Server), documenting code (comments, README/Markdown), Git/GitHub basics | `bk06/ch02/bk06ch02_listing01.html`, `bk06ch02_listing02.js`, `bk06ch02_listing03.md`, `bk06ch02fg007.html` | **resolved** (old `Book6/Chapter2` → new ch02, confirmed) — old `Listing0202.js` and `Listing0203.md` already matched Listing 2-2 ("Gamelet.js with Comments") and Listing 2-3 ("The README file for Gamelet") byte-for-byte; renamed to `bk06ch02_listing02.js`/`_listing03.md`, no content changes needed. **Created** `bk06ch02_listing01.html` — Listing 2-1 ("A Simple HTML Page," the basic Hello-World test page for trying VS Code extensions) had no old-repo equivalent; the old `Chapter2/index.html` turned out to be a different file entirely (see next). Renamed old `Chapter2/index.html` to `bk06ch02fg007.html`: its content ("Hello, Friends!" gradient heading, particle-burst canvas animation, "WELCOME TO JAVASCRIPT" subtitle) is a byte-for-byte match for the *edited* state of the "over-the-top Hello, World! webpage" shown mid-edit in Figure 2-8 (the original pre-edit "Hello, World!"/Figure 2-7 state wasn't separately preserved in the old repo — only the final saved file survived, which is fine since Figures 2-7/2-8 are the same evolving file). Verified all HTML files well-formed (`html.parser`) and `bk06ch02_listing02.js` runs correctly under a stubbed-DOM `node` simulation (ArrowRight press moves `ball.style.left` to `10px`, matching the chapter's own described behavior — no upper-bound clamp shown here, consistent with this listing predating the ch01 fix). |
+| bk06ch03 | Storing and Wrangling Data: `let`/`const`, JavaScript's primitive data types (string/number/bigInt/boolean/NaN/undefined/symbol), objects, arrays, scope | `bk06/ch03/bk06ch03_listing01.js` | **resolved** (old `Book6/Chapter3` → new ch03, confirmed) — this chapter's only numbered listing (Listing 3-1, "Using a Template Literal String") already matched the old `listing0301.js` almost exactly; fixed two string literals from double to single quotes (`"JavaScript All-in-One For Dummies"`/`"Joe Q. Developer"` → `'...'`/`'...'`) to match the proof's exact quoting verbatim (functionally identical either way). Ran with `node`, confirmed output: "Joe Q. Developer, thank you for your order of JavaScript All-in-One For Dummies. Your payment of 39.99 was successful." Every other example in this chapter (variable/const declarations, data-type demos, `typeof`, string/number methods, object/array literals, scope) is inline console-typed illustration with no Listing caption, filename, or "example files" reference — no companion files fabricated for these, consistent with how bk01ch01/02 and bk06ch04 were handled. |
+| bk06ch04 | Working with Operators and Expressions: building expressions, operator precedence/associativity, parentheses, assignment/comparison/arithmetic/concatenation/logical operators, combining operators, bitwise operators (mentioned, not used) | none — **confirmed prose/reference chapter only** | **resolved — no companion code**. Read the full 9-page proof; it contains no "Listing" captions, no filenames, no "available with this book's example files" note anywhere — every code sample is a one- or two-line inline illustration (`x = x + 1;`, `x = (4-5-2) / (2*2);`, `let sum = 1 + parseInt("1");`, etc.) or a reference table (Table 4-1/4-2/4-3: comparison/arithmetic/logical operators). This also resolves why old `Book6/` skips straight from `Chapter3` to `Chapter5` with no `Chapter4` folder: the Operators chapter never had companion code in either edition, so no folder was ever needed for it — not a renumbering artifact. Nothing to move or create. |
+
 ## Deferred (no proofs yet)
 
-- `Book6/` (JavaScript listings, ball-game, weather API) → likely bk06 or bk07. bk06ch01's proof has arrived (Batch 4) but the rest of bk06 hasn't, so `Book6/` is intentionally NOT touched in this pass — revisit once more bk06 proofs arrive.
+- `Book6/Chapter10/` (`Listing1001.html`-`Listing1003.html`: mouse tracking, event bubbling, `dispatchEvent`) — investigated against all 9 proofed bk06 chapters (full-text search for `addEventListener`/`mousemove`/`bubbling`/`dispatchEvent` across every bk06ch0N proof) and found in none of them, despite two forward-references to a "Chapter 10" on events inside ch01 (p.466) and ch08 (p.589). Since the new minibook only has 9 proofed chapters, this looks like manuscript content for an Events chapter that was cut (or never proofed) late in production, leaving dangling cross-references behind. Left in place untouched, pending clarification — see the bk06 section above for details.
 - `Book7/` (React `my-react-app`, Vue `vue-project`) → likely bk07
 - `Book8/` — empty, unclear purpose
 - `Book4/chapter01/` (`trivia-game/` — `index.html`/`style.css`/`data/trivia.js` — plus
