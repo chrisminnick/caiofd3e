@@ -8,10 +8,9 @@ belongs in the new edition. Confirmed mismatch: `Book4/chapter01` (trivia-game +
 "Prompt:"-commented script.js) actually belongs in **bk04ch03**, not bk04ch01.
 Mapping below is based on matching actual code/content against the page proofs.
 
-Proofs received so far (batches 1–4): bk01–bk05 fully reconciled; bk06ch01 (batch 4)
-is the only bk06 proof received so far. bk06 (remaining chapters) and bk07 (likely
-JavaScript and React/Vue based on old Book6/7 content) are still pending from the
-layout team.
+Proofs received so far (batches 1-5): bk01-bk06 fully reconciled (bk06ch01 arrived
+in batch 4; bk06ch02-ch09 arrived in batch 5). bk07 (likely React/Vue based on old
+Book7 content) is still pending from the layout team.
 
 ## Part 1 — bk01: Getting Started with Coding
 
@@ -128,7 +127,7 @@ been fully migrated into `bk05/` and removed from the repo — every HTML/CSS fi
 a confirmed match in the bk05ch01–ch05 proofs (unlike bk04's `chapter01/`, nothing in
 `Book5/` needed to be left behind in the Deferred section).
 
-## Part 6 — bk06: JavaScript Fundamentals (IN PROGRESS)
+## Part 6 — bk06: JavaScript Fundamentals (RESOLVED — all 9 chapters reconciled)
 
 Old `Book6/` numbered its chapter folders 1, 2, 3, 5, 6, 7, 8, 9, 10 — skipping 4.
 Before reconciling, the working theory (per the reviewer's own note) was that this
@@ -175,6 +174,7 @@ into any of the 9 real chapters — its content (mouse tracking, bubbling,
 | bk06ch06 | Using Arrays: creating/accessing/modifying/deleting elements, array methods (push/pop/shift/unshift/slice/splice/reduce/map/filter/etc.), destructuring and spreading arrays | `bk06/ch06/bk06ch06_listing01.html` | **resolved** (old `Book6/Chapter6` → new ch06, confirmed — direct 1:1, not shifted) — renamed `Listing0601.html` → `bk06ch06_listing01.html`. Content already matched Listing 6-1 ("Generating an HTML List from an Array") exactly, byte-for-byte (same `ingredients` array, same `map()`/`join()` chain, same `<ul id="ingredients">` target, same `<!doctype html>` casing) — no fixes needed. Verified well-formed (`html.parser`) and ran the inline script in a stubbed-DOM `node` simulation: produces the exact eight `<li>` elements described in the chapter. Every other array method (`push`/`pop`/`shift`/`unshift`/`slice`/`splice`/`reduce`/`filter`/destructuring/spreading) is demonstrated only via inline JavaScript-console snippets and Figure screenshots (Figures 6-1 through 6-10), with no separate Listing caption or filename — consistent with how similar inline-only material was handled elsewhere in this project, no companion files fabricated for these. |
 | bk06ch07 | Making and Using Objects: object literals, constructor functions, classes, `Object.create()`, dot/bracket notation, nested properties, `for...in` over object properties, comparing/copying objects (shallow copy via spread, deep copy via `structuredClone()`) | `bk06/ch07/bk06ch07_listing01.js` .. `_listing05.js` | **resolved** (old `Book6/Chapter7` → new ch07, confirmed — direct 1:1, not shifted) — old `Listing0701.js`-`Listing0705.js` matched Listings 7-1 through 7-5 (Cat constructor function, Pet class, Object.create computer/laptop, myLocation nested-properties object, pet for...in loop) logic-for-logic; fixed quote style (double → single) in listing01/listing02 to match the proof's exact quoting (`new Cat('Murray', 'domestic short hair')`, `new Pet('Chauncey', 'AmStaff')`); listing03/04/05 already matched exactly including double-quote style. Ran all five with `node`: constructor/class objects created with correct properties, `Object.create()`'s `laptop` correctly prototype-linked to `computer` (`Object.getPrototypeOf(laptop) === computer` → `true`), nested `myLocation.city.coord.lat` resolves to `51.5085`, and the `for...in` loop prints both `pet` properties. **Left behind, unmigrated:** old `Book6/Chapter7/Listing0706.js` (a `function Vehicle(speed)` constructor with a `this.moveForward` method) — searched the full text of all 9 bk06ch0N proofs for `Vehicle`/`moveForward`/`function Vehicle` and found zero matches anywhere; this file doesn't belong to ch07 or any other proofed bk06 chapter. Left in place in `Book6/Chapter7/`, noted in the Deferred section below rather than force-fit. |
 | bk06ch08 | Writing and Running Functions: declarations/expressions/arrow functions, parameters (rest, default, `arguments`), passing by value vs. reference, callbacks, `this`/context (`call`/`apply`/`bind`), passing functions between objects, function chaining — culminating in an incremental bookstore/shopping-cart app | `bk06/ch08/bk06ch08_listing01.js` .. `_listing17.html`, `bk06/ch08/data/movies.js`, `bk06/ch08/getLocalWeather.js` | **resolved** (old `Book6/Chapter8` → new ch08, confirmed — direct 1:1, not shifted) — renamed `Listing08NN.js`/`.html` → `bk06ch08_listingNN.js`/`.html`. Listings 8-1, 8-2, 8-3, 8-4, 8-5, 8-7, 8-8, 8-9, 8-10, 8-14, 8-15, 8-16 already matched the proof byte-for-byte. **Created** `bk06ch08_listing06.js` (Listing 8-6, `convertMilesToKM` function expression) — the old repo's numbering jumped straight from `Listing0805.js` to `Listing0807.js` with no `Listing0806.js` at all; added the missing file from the proof's exact source and verified with `node` (`convertMilesToKM(5)` → `8.045`). **Created** `bk06ch08/data/movies.js`: Listing 8-8 (`bk06ch08_listing08.html`) `<script src="data/movies.js">`s in a "100 movies" array that was never itself printed as a listing and had no file anywhere in the old repo; added a representative 10-movie array (each with a `.title` property, matching what `movieChoice.title` requires) since the proof never shows the full 100-entry source — a reasonably-sized working substitute rather than a fabricated verbatim 100-item list, same judgment-call precedent as bk03ch01's install cell. Fixed nothing else in listings 8-11/8-12/8-13 despite the proof's own rendering showing what looks like single-quoted `'<p>${book}</p>'`/`'myCar is driving at ${this.speed}'` strings with `${}` interpolation inside single quotes (which would not actually interpolate) — concluded this is a backtick-rendered-as-apostrophe typesetting artifact (the surrounding prose and Listing 8-15/8-16 use real backticks for the identical pattern), so kept the old files' already-correct template-literal backticks rather than "fixing" working code to match a typesetting glitch. Verified extensively with `node` (stubbing `document`/`prompt` where needed): listing01 prints the exact two `console.log` lines shown; listing02's random status-string update runs; listing03's numbered list, listing04's Spanish greeting callback, listing05's unordered list (plus its documented `TypeError` when called with no array, matching Figure 8-1), listing07's "It will take 15 hours to get there" (matching Figure 8-2 exactly), listing09/listing10's context-vs-no-context driving behavior, listing11's `bind()`-fixed callback, listing12's book removal, and listing13's cart rendering all produce the exact behavior the chapter describes. Ran the complete `bk06ch08_listing17.html` app end-to-end via a stubbed-DOM `node` simulation with a fake `addEventListener`/click dispatch: initial render shows both books in the store and Gatsby in the cart; simulating a Check Out click correctly removes "The Great Gatsby" from the bookstore list (matching Figures 8-6/8-7) while intentionally leaving the cart's own list untouched — the chapter's own text flags this as an unsolved exercise ("Can you figure out how to also remove the book from the cart when you check out?", p.594), not a bug. Kept `getLocalWeather.js` as-is (matches the chapter's final inline-built version exactly, p.577) using its own unprefixed filename per the same convention as `my_calculators.py`/`HelloWorld.java`. |
+| bk06ch09 | Getting Oriented with Classes: encapsulation/abstraction/inheritance/polymorphism, base and derived classes (`extends`/`super()`), constructors, public/private/static members and fields | `bk06/ch09/bk06ch09_listing01.js` .. `_listing06.js` | **resolved** (old `Book6/Chapter9` → new ch09, confirmed — direct 1:1, not shifted) — renamed `Listing09NN.js` → `bk06ch09_listingNN.js`. All six listings (Beverage constructor with `this`, Coffee-extends-Beverage derivation, Beverage's `drink()` method, Coffee's overridden `drink()`, the Cat class with `static species`/`static herd()`, and the full Cat class with public/private/static fields plus `play()`/`#takeNap()`) already matched the proof **byte-for-byte** — no fixes needed anywhere in this chapter, the cleanest of all nine. Verified all six with `node`: `new Beverage('16oz','hot')` gets correct `size`/`temperature`; `new Coffee('64oz','hot',true,'black')` correctly inherits and extends via `super()`; `drink()` correctly logs "now drinking"/"now drinking coffee" only when `temperature !== 'scalding'` (confirmed both the base and overridden version); `Cat.species` reads `'Felis catus'`, `Cat.herd()` throws the expected error, `#isSleeping` is correctly inaccessible from outside the class (`typeof c1.isSleeping === 'undefined'`); and a derived `ShortHair extends Cat` (built fresh in the test, mirroring the chapter's own non-listing walkthrough example) correctly inherits `paws`/`sound`/`play()`/`#takeNap()` while adding its own `fur` field. |
 
 ## Deferred (no proofs yet)
 
@@ -184,9 +184,10 @@ into any of the 9 real chapters — its content (mouse tracking, bubbling,
 - `Book4/chapter01/` (`trivia-game/` — `index.html`/`style.css`/`data/trivia.js` — plus
   `script.js` and `listing040101.py`, a sqlite3/dataclass todo-list module) — investigated
   thoroughly against all four bk04 proofs (see the bk04ch03 correction note above) and
-  confirmed to match none of them. Left in place, untouched. May belong to a later,
-  not-yet-proofed minibook (a JS-focused chapter in bk05/06/07) or may be obsolete
-  2nd-edition-era scaffolding; revisit once those proofs arrive.
+  confirmed to match none of them. Also checked against all 9 bk06 proofs during the
+  bk06 pass (full-text search for `triviaData`/`TodoItem`/`sqlite3`) — no match there
+  either. Left in place, untouched. May belong to bk07 (not yet proofed) or may be
+  obsolete 2nd-edition-era scaffolding; revisit once bk07 proofs arrive.
 - `Book2/figures/fg020102.png`, `Book2/figures/fg020103.png` — two leftover 2nd-edition
   figure images under the old `Book2/` root (not `chapter2/`); no corresponding code to
   reconcile, left in place. `Book2/chapter2/`, `chapter5/`, `chapter6/`, and `chapter7/`
@@ -195,25 +196,37 @@ into any of the 9 real chapters — its content (mouse tracking, bubbling,
 
 - `Book6/Chapter7/Listing0706.js` (a `function Vehicle(speed)` constructor with a `this.moveForward` method) — investigated against all 9 proofed bk06 chapters (full-text search for `Vehicle`/`moveForward`) and found in none of them. Left in place, untouched; may belong to a chapter this edition never proofed, or may be obsolete 2nd-edition scaffolding.
 
-## Status: bk01–bk05 fully reconciled
+## Status: bk01-bk06 fully reconciled
 
-With bk05ch01–ch05 resolved above, **five proofed minibooks (bk01, bk02, bk03, bk04,
-bk05 — 25 chapters total) are now fully reconciled** against their 3rd-edition page
-proofs and committed on `3e-code-update`. `Book1`–`Book3` and `Book5` (the old
+With bk06ch01-ch09 resolved above, **six proofed minibooks (bk01, bk02, bk03, bk04,
+bk05, bk06 - 34 chapters total) are now fully reconciled** against their 3rd-edition
+page proofs and committed on `3e-code-update`. `Book1`-`Book3` and `Book5` (the old
 2nd-edition-derived folders for those minibooks) have been fully migrated and
 removed; `Book4` retains only the still-unmatched `chapter01/` content noted in the
-Deferred section above, left in place on purpose pending future proofs.
+Deferred section above, left in place on purpose pending future proofs; `Book6` has
+been migrated to `bk06/` and removed except for the two genuinely-unplaceable
+leftovers noted in the Deferred section (`Chapter7/Listing0706.js` and the whole of
+`Chapter10/`), which don't match any of the 9 proofed bk06 chapters and are left in
+place rather than force-fit.
 
-`bk06`–`bk07` (and whatever `Book8` turns out to be) remain **pending** — only
-bk06ch01's proof has arrived so far (Batch 4), and no proofs at all have been
-received for bk07 or the rest of bk06. `Book6` and `Book7` are believed to map to
-JavaScript and React/Vue content respectively (see the Deferred section above for
-specifics), but nothing in those folders should be touched until their proofs
-arrive: old chapter numbers have already been shown to be unreliable indicators of
-new-edition placement (bk02ch02, bk04ch03) and content has turned out to be
-misfiled, absent, or duplicated/misplaced across chapters more than once in this
-project (bk04ch03's trivia-game mismatch; bk05ch03's stray `grid-example.html`
-duplicate of bk05ch05's Listing 5-8), so each remaining minibook needs the same
-full read-the-proof-first treatment applied here before anything gets renamed,
-fixed, or moved. Once more bk06 proofs arrive, bk06ch01 can be reconciled on its
-own or held until the full minibook's proofs are in — reviewer's call at that time.
+A key finding from the bk06 pass: the working theory carried into this pass (that
+old `Book6`'s chapter-numbering gap at "4" signaled a renumbering/merge somewhere in
+the new bk06) turned out to be **wrong**. Content-by-content comparison shows old
+chapters 1, 2, 3, 5, 6, 7, 8, 9 map directly, 1:1, with NO shift, to new bk06ch01,
+ch02, ch03, ch05, ch06, ch07, ch08, ch09 respectively - the gap at old "Chapter4"
+exists simply because the Operators/Expressions chapter (old and new alike) has
+never had companion code, in either edition, so no folder for it was ever needed.
+Old `Chapter10` (DOM events) is the real oddity: its content doesn't match any of
+the 9 proofed chapters, but two dangling proof cross-references ("...Chapter 10 of
+this minibook...") suggest an Events chapter was planned and then cut from this
+edition without those references being updated - see the bk06 section above and the
+Deferred section below for details.
+
+`bk07` (and whatever `Book8` turns out to be) remain **pending** - no proofs at all
+have been received for bk07 yet. `Book7` is believed to map to React/Vue content
+(see the Deferred section below for specifics), but nothing in that folder should be
+touched until its proofs arrive: old chapter numbers have already been shown to be
+unreliable indicators of new-edition placement more than once in this project
+(bk02ch02, bk04ch03, and even within bk06 itself the Chapter10/dangling-reference
+situation), so bk07 needs the same full read-the-proof-first treatment applied here
+before anything gets renamed, fixed, or moved.
