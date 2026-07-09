@@ -4,12 +4,19 @@
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Inline JavaScript</title>
+<title>Move the ball!</title>
+<style>
+#ball {
+background-color: red;
+border-radius: 50%;
+width: 20px;
+height: 20px;
+position: absolute;
+}
+</style>
 </head>
 <body>
-<script>
-let personName = prompt('What is your name?');
-alert('Hello, ' + personName);
-</script>
+<div id="ball"></div>
+<script src="gamelet.js"></script>
 </body>
 </html>
