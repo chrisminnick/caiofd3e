@@ -4,4 +4,4 @@ class Pet {
     this.type = type;
   }
 }
-const ourDog = new Pet("Chauncey", "AmStaff");
+const ourDog = new Pet('Chauncey', 'AmStaff');
