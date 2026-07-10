@@ -1,11 +1,11 @@
 export const API = 'https://api.example.com';
-export const colorThemeDrk = {
+export const colorThemeDark = {
   backgroundColor: '#000',
   textColor: '#EEE',
   headerColor: '#FF0000',
   footerColor: '#FF0000',
 };
-export const colorThemeLght = {
+export const colorThemeLight = {
   backgroundColor: '#fff',
   textColor: '#333',
   headerColor: '#FF0000',
