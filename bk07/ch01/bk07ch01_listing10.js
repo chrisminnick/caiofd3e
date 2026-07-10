@@ -1,10 +1,10 @@
 async function fetchTheData(url) {
   try {
     const response = await fetch(url);
-    if (response.status >= 200 && response.status <= 299) {
+    if (response.ok) {
       return response.json();
     } else {
-      throw Error(response.statusText);
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
   } catch (error) {
     console.log(error);
