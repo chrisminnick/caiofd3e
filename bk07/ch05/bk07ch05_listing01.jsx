@@ -5,10 +5,10 @@ export default function Bing() {
       <SearchBox />
       <NewsImageScroller />
       <div>
-        <div class="leftColumn">
+        <div className="leftColumn">
           <TopStories />
         </div>
-        <div class="rightColumn">
+        <div className="rightColumn">
           <Weather postalCode="97103" />
           <Sports />
         </div>

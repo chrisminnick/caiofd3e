@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 export default function useGitHubRepos(username) {
   const [repos, setRepos] = useState([]);
-  const [isLoading, setIsLoading] = useState('idle');
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const getRepos = async () => {
       try {
