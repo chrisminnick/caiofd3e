@@ -2,7 +2,7 @@ import { useState } from 'react';
 function CustomerServiceSurvey(props) {
   const [yourName, setYourName] = useState('');
   const [yourEmail, setYourEmail] = useState('');
-  const [rating, setRating] = useState('');
+  const [rating, setRating] = useState('Excellent');
   const [comments, setComments] = useState('');
   return (
     <div>
@@ -40,6 +40,7 @@ function CustomerServiceSurvey(props) {
       </h1>
       Your name:
       <input
+        type="text"
         name="yourName"
         value={yourName}
         onChange={(e) => setYourName(e.target.value)}
@@ -47,6 +48,7 @@ function CustomerServiceSurvey(props) {
       <br />
       Your email:
       <input
+        type="text"
         name="yourEmail"
         value={yourEmail}
         onChange={(e) => setYourEmail(e.target.value)}
