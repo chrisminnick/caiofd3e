@@ -127,20 +127,21 @@ been fully migrated into `bk05/` and removed from the repo — every HTML/CSS fi
 a confirmed match in the bk05ch01–ch05 proofs (unlike bk04's `chapter01/`, nothing in
 `Book5/` needed to be left behind in the Deferred section).
 
-## Part 6 — bk06: JavaScript Fundamentals (RESOLVED — all 9 chapters reconciled)
+## Part 6 — bk06: JavaScript Fundamentals (RESOLVED — all 10 chapters reconciled)
 
 Old `Book6/` numbered its chapter folders 1, 2, 3, 5, 6, 7, 8, 9, 10 — skipping 4.
 Before reconciling, the working theory (per the reviewer's own note) was that this
-gap signaled a renumbering/merge somewhere in the new bk06 (which only has 9
-chapters, ch01-ch09). **That theory turned out to be wrong.** Content-by-content
-comparison (not just old/new chapter numbers) shows old chapters map 1:1 to new
-chapters with NO shift at all: old Chapter1 (ball game) = new ch01, old Chapter2
-(Node/VS Code/Git toolbox) = new ch02, old Chapter3 (template literal) = new ch03,
-old Chapter5 (switch/for-in/while/do-while) = new ch05, old Chapter6 (array->HTML
-list) = new ch06, old Chapter7 (constructors/classes/Object.create) = new ch07, old
-Chapter8 (functions/callbacks/this) = new ch08, old Chapter9 (classes/inheritance/
-static/private fields) = new ch09 — every one confirmed by matching actual code
-content against the proofs, not just listing counts.
+gap signaled a renumbering/merge somewhere in the new bk06. **That theory turned
+out to be wrong.** Content-by-content comparison (not just old/new chapter numbers)
+shows old chapters map 1:1 to new chapters with NO shift at all: old Chapter1 (ball
+game) = new ch01, old Chapter2 (Node/VS Code/Git toolbox) = new ch02, old Chapter3
+(template literal) = new ch03, old Chapter5 (switch/for-in/while/do-while) = new
+ch05, old Chapter6 (array->HTML list) = new ch06, old Chapter7 (constructors/
+classes/Object.create) = new ch07, old Chapter8 (functions/callbacks/this) = new
+ch08, old Chapter9 (classes/inheritance/static/private fields) = new ch09, and old
+Chapter10 (mouse tracking/event bubbling/dispatchEvent) = new ch10 — every one
+confirmed by matching actual code content against the proofs, not just listing
+counts.
 
 The real explanation for the missing old `Chapter4` folder: new bk06ch04 ("Working
 with Operators and Expressions") is a prose/reference chapter with zero numbered
@@ -150,19 +151,21 @@ operators). There was never any companion code file for this chapter in either
 edition, so there was never a folder for it in the old repo either. No merge or
 renumbering occurred; ch04 (both old and new) simply never had a listing.
 
-The real mystery instead is old `Chapter10/` (`Listing1001-1003.html`: mouse
-tracking, event bubbling, `dispatchEvent`/`addEventListener` fundamentals). Its
-content doesn't match any of the 9 proofed bk06 chapters — but **two separate
-forward-references inside the ch01 and ch08 proofs** ("You can read all about
-events and event listeners in Chapter 10 in this minibook," p.589; "the modern way
-of responding to events... `addEventListener`... Chapter 10 of this minibook,"
-p.466) show the author's manuscript still assumes a Chapter 10 on events exists.
-Since only ch01-ch09 were proofed/exist in the final TOC, this looks like a
-dangling cross-reference left over from a late restructuring that cut (or never
-commissioned proofs for) an Events chapter. `Book6/Chapter10/` is left in place,
-untouched, and called out in the Deferred section below rather than force-fit
-into any of the 9 real chapters — its content (mouse tracking, bubbling,
-`dispatchEvent`) doesn't appear anywhere in ch01-ch09's text.
+Old `Chapter10/` (`Listing1001-1003.html`: mouse tracking, event bubbling,
+`dispatchEvent`/`addEventListener` fundamentals) was the real mystery during the
+batch-5 pass: its content didn't match any of the 9 bk06 chapters proofed at that
+time, despite two forward-references inside the ch01 and ch08 proofs ("You can read
+all about events and event listeners in Chapter 10 in this minibook," p.589; "the
+modern way of responding to events... `addEventListener`... Chapter 10 of this
+minibook," p.466). **Batch 6 resolved this.** The bk06ch10 proof ("Making Things
+Happen with Events") arrived and confirmed the theory: old `Chapter10/` is exactly
+this chapter's companion code. Listing 10-1 ("Setting an Event Listener," mouse
+tracking via `addEventListener('mousemove', ...)`), Listing 10-2 ("Using Event
+Bubbling to Detect Events on Multiple Elements"), and Listing 10-3 ("Firing a
+Built-In Event," `dispatchEvent()`/focus event) match old `Listing1001.html`,
+`Listing1002.html`, and `Listing1003.html` byte-for-byte — confirmed by running all
+three through a `jsdom`-based `node` simulation (see the bk06ch10 row below). Moved
+and renamed into `bk06/ch10/`.
 
 | New chapter | Topic (from proof) | New location | Status |
 |---|---|---|---|
@@ -172,13 +175,13 @@ into any of the 9 real chapters — its content (mouse tracking, bubbling,
 | bk06ch04 | Working with Operators and Expressions: building expressions, operator precedence/associativity, parentheses, assignment/comparison/arithmetic/concatenation/logical operators, combining operators, bitwise operators (mentioned, not used) | none — **confirmed prose/reference chapter only** | **resolved — no companion code**. Read the full 9-page proof; it contains no "Listing" captions, no filenames, no "available with this book's example files" note anywhere — every code sample is a one- or two-line inline illustration (`x = x + 1;`, `x = (4-5-2) / (2*2);`, `let sum = 1 + parseInt("1");`, etc.) or a reference table (Table 4-1/4-2/4-3: comparison/arithmetic/logical operators). This also resolves why old `Book6/` skips straight from `Chapter3` to `Chapter5` with no `Chapter4` folder: the Operators chapter never had companion code in either edition, so no folder was ever needed for it — not a renumbering artifact. Nothing to move or create. |
 | bk06ch05 | Controlling Flow: `if`/`else`, the ternary operator, `switch`, `for`/`for...in`/`for...of`/`while`/`do...while` loops, `break`/`continue` | `bk06/ch05/bk06ch05_listing01.html` .. `_listing04.html` | **resolved** (old `Book6/Chapter5` → new ch05, confirmed — NOT a shifted/renumbered chapter, see the theory correction above) — renamed `Listing05NN.html` → `bk06ch05_listingNN.html`. Listing 5-1 (switch/Holiday Finder) and Listing 5-3 (while-loop guessing game) already matched the proof exactly. Fixed listing02 (Listing 5-2, for...in/House Details): the old file's very first line was corrupted to `!DOCTYPE html>` (missing the leading `<`, invalid HTML) — restored to `<!DOCTYPE html>` matching the proof. Fixed listing04 (Listing 5-4, do...while guessing game): old file's `<title>` used a Unicode ellipsis character ("do … while Loop") where the proof consistently typesets this as three spaced periods ("do . . . while", matching the chapter's own section heading style) — corrected to `Random Number with a do . . . while Loop`. Verified all four via a stubbed-DOM `node` simulation: listing01 with a faked `Date.getMonth()` returning 3 correctly renders "April 26 is National Pretzel Day!"; listing02 correctly renders the `house` object's three properties via `for...in`; listing03/listing04's `while`/`do...while` guessing loops both terminate correctly once the random guess hits 71. |
 | bk06ch06 | Using Arrays: creating/accessing/modifying/deleting elements, array methods (push/pop/shift/unshift/slice/splice/reduce/map/filter/etc.), destructuring and spreading arrays | `bk06/ch06/bk06ch06_listing01.html` | **resolved** (old `Book6/Chapter6` → new ch06, confirmed — direct 1:1, not shifted) — renamed `Listing0601.html` → `bk06ch06_listing01.html`. Content already matched Listing 6-1 ("Generating an HTML List from an Array") exactly, byte-for-byte (same `ingredients` array, same `map()`/`join()` chain, same `<ul id="ingredients">` target, same `<!doctype html>` casing) — no fixes needed. Verified well-formed (`html.parser`) and ran the inline script in a stubbed-DOM `node` simulation: produces the exact eight `<li>` elements described in the chapter. Every other array method (`push`/`pop`/`shift`/`unshift`/`slice`/`splice`/`reduce`/`filter`/destructuring/spreading) is demonstrated only via inline JavaScript-console snippets and Figure screenshots (Figures 6-1 through 6-10), with no separate Listing caption or filename — consistent with how similar inline-only material was handled elsewhere in this project, no companion files fabricated for these. |
-| bk06ch07 | Making and Using Objects: object literals, constructor functions, classes, `Object.create()`, dot/bracket notation, nested properties, `for...in` over object properties, comparing/copying objects (shallow copy via spread, deep copy via `structuredClone()`) | `bk06/ch07/bk06ch07_listing01.js` .. `_listing05.js` | **resolved** (old `Book6/Chapter7` → new ch07, confirmed — direct 1:1, not shifted) — old `Listing0701.js`-`Listing0705.js` matched Listings 7-1 through 7-5 (Cat constructor function, Pet class, Object.create computer/laptop, myLocation nested-properties object, pet for...in loop) logic-for-logic; fixed quote style (double → single) in listing01/listing02 to match the proof's exact quoting (`new Cat('Murray', 'domestic short hair')`, `new Pet('Chauncey', 'AmStaff')`); listing03/04/05 already matched exactly including double-quote style. Ran all five with `node`: constructor/class objects created with correct properties, `Object.create()`'s `laptop` correctly prototype-linked to `computer` (`Object.getPrototypeOf(laptop) === computer` → `true`), nested `myLocation.city.coord.lat` resolves to `51.5085`, and the `for...in` loop prints both `pet` properties. **Left behind, unmigrated:** old `Book6/Chapter7/Listing0706.js` (a `function Vehicle(speed)` constructor with a `this.moveForward` method) — searched the full text of all 9 bk06ch0N proofs for `Vehicle`/`moveForward`/`function Vehicle` and found zero matches anywhere; this file doesn't belong to ch07 or any other proofed bk06 chapter. Left in place in `Book6/Chapter7/`, noted in the Deferred section below rather than force-fit. |
+| bk06ch07 | Making and Using Objects: object literals, constructor functions, classes, `Object.create()`, dot/bracket notation, nested properties, `for...in` over object properties, comparing/copying objects (shallow copy via spread, deep copy via `structuredClone()`) | `bk06/ch07/bk06ch07_listing01.js` .. `_listing05.js` | **resolved** (old `Book6/Chapter7` → new ch07, confirmed — direct 1:1, not shifted) — old `Listing0701.js`-`Listing0705.js` matched Listings 7-1 through 7-5 (Cat constructor function, Pet class, Object.create computer/laptop, myLocation nested-properties object, pet for...in loop) logic-for-logic; fixed quote style (double → single) in listing01/listing02 to match the proof's exact quoting (`new Cat('Murray', 'domestic short hair')`, `new Pet('Chauncey', 'AmStaff')`); listing03/04/05 already matched exactly including double-quote style. Ran all five with `node`: constructor/class objects created with correct properties, `Object.create()`'s `laptop` correctly prototype-linked to `computer` (`Object.getPrototypeOf(laptop) === computer` → `true`), nested `myLocation.city.coord.lat` resolves to `51.5085`, and the `for...in` loop prints both `pet` properties. **Left behind, unmigrated:** old `Book6/Chapter7/Listing0706.js` (a `function Vehicle(speed)` constructor with a `this.moveForward` method) — searched the full text of all 9 bk06ch0N proofs for `Vehicle`/`moveForward`/`function Vehicle` and found zero matches anywhere; this file doesn't belong to ch07. **Update (bk06ch10 pass, Batch 6):** also checked against the newly arrived bk06ch10 proof (full-text search via `pdftotext -layout` for `Vehicle`/`moveForward`/`speed`) — still zero matches. With all 10 bk06 chapters now proofed and none of them containing this code, `Listing0706.js` is marked **OBSOLETE / likely cut 2nd-edition content** rather than an unresolved mapping — see the Deferred section below. Left in place in `Book6/Chapter7/`. |
 | bk06ch08 | Writing and Running Functions: declarations/expressions/arrow functions, parameters (rest, default, `arguments`), passing by value vs. reference, callbacks, `this`/context (`call`/`apply`/`bind`), passing functions between objects, function chaining — culminating in an incremental bookstore/shopping-cart app | `bk06/ch08/bk06ch08_listing01.js` .. `_listing17.html`, `bk06/ch08/data/movies.js`, `bk06/ch08/getLocalWeather.js` | **resolved** (old `Book6/Chapter8` → new ch08, confirmed — direct 1:1, not shifted) — renamed `Listing08NN.js`/`.html` → `bk06ch08_listingNN.js`/`.html`. Listings 8-1, 8-2, 8-3, 8-4, 8-5, 8-7, 8-8, 8-9, 8-10, 8-14, 8-15, 8-16 already matched the proof byte-for-byte. **Created** `bk06ch08_listing06.js` (Listing 8-6, `convertMilesToKM` function expression) — the old repo's numbering jumped straight from `Listing0805.js` to `Listing0807.js` with no `Listing0806.js` at all; added the missing file from the proof's exact source and verified with `node` (`convertMilesToKM(5)` → `8.045`). **Created** `bk06ch08/data/movies.js`: Listing 8-8 (`bk06ch08_listing08.html`) `<script src="data/movies.js">`s in a "100 movies" array that was never itself printed as a listing and had no file anywhere in the old repo; added a representative 10-movie array (each with a `.title` property, matching what `movieChoice.title` requires) since the proof never shows the full 100-entry source — a reasonably-sized working substitute rather than a fabricated verbatim 100-item list, same judgment-call precedent as bk03ch01's install cell. Fixed nothing else in listings 8-11/8-12/8-13 despite the proof's own rendering showing what looks like single-quoted `'<p>${book}</p>'`/`'myCar is driving at ${this.speed}'` strings with `${}` interpolation inside single quotes (which would not actually interpolate) — concluded this is a backtick-rendered-as-apostrophe typesetting artifact (the surrounding prose and Listing 8-15/8-16 use real backticks for the identical pattern), so kept the old files' already-correct template-literal backticks rather than "fixing" working code to match a typesetting glitch. Verified extensively with `node` (stubbing `document`/`prompt` where needed): listing01 prints the exact two `console.log` lines shown; listing02's random status-string update runs; listing03's numbered list, listing04's Spanish greeting callback, listing05's unordered list (plus its documented `TypeError` when called with no array, matching Figure 8-1), listing07's "It will take 15 hours to get there" (matching Figure 8-2 exactly), listing09/listing10's context-vs-no-context driving behavior, listing11's `bind()`-fixed callback, listing12's book removal, and listing13's cart rendering all produce the exact behavior the chapter describes. Ran the complete `bk06ch08_listing17.html` app end-to-end via a stubbed-DOM `node` simulation with a fake `addEventListener`/click dispatch: initial render shows both books in the store and Gatsby in the cart; simulating a Check Out click correctly removes "The Great Gatsby" from the bookstore list (matching Figures 8-6/8-7) while intentionally leaving the cart's own list untouched — the chapter's own text flags this as an unsolved exercise ("Can you figure out how to also remove the book from the cart when you check out?", p.594), not a bug. Kept `getLocalWeather.js` as-is (matches the chapter's final inline-built version exactly, p.577) using its own unprefixed filename per the same convention as `my_calculators.py`/`HelloWorld.java`. |
 | bk06ch09 | Getting Oriented with Classes: encapsulation/abstraction/inheritance/polymorphism, base and derived classes (`extends`/`super()`), constructors, public/private/static members and fields | `bk06/ch09/bk06ch09_listing01.js` .. `_listing06.js` | **resolved** (old `Book6/Chapter9` → new ch09, confirmed — direct 1:1, not shifted) — renamed `Listing09NN.js` → `bk06ch09_listingNN.js`. All six listings (Beverage constructor with `this`, Coffee-extends-Beverage derivation, Beverage's `drink()` method, Coffee's overridden `drink()`, the Cat class with `static species`/`static herd()`, and the full Cat class with public/private/static fields plus `play()`/`#takeNap()`) already matched the proof **byte-for-byte** — no fixes needed anywhere in this chapter, the cleanest of all nine. Verified all six with `node`: `new Beverage('16oz','hot')` gets correct `size`/`temperature`; `new Coffee('64oz','hot',true,'black')` correctly inherits and extends via `super()`; `drink()` correctly logs "now drinking"/"now drinking coffee" only when `temperature !== 'scalding'` (confirmed both the base and overridden version); `Cat.species` reads `'Felis catus'`, `Cat.herd()` throws the expected error, `#isSleeping` is correctly inaccessible from outside the class (`typeof c1.isSleeping === 'undefined'`); and a derived `ShortHair extends Cat` (built fresh in the test, mirroring the chapter's own non-listing walkthrough example) correctly inherits `paws`/`sound`/`play()`/`#takeNap()` while adding its own `fur` field. |
+| bk06ch10 | Making Things Happen with Events: the JavaScript runtime model (call stack/memory heap/callback queue), the event loop, listening for events (HTML event attributes, event handler properties, `addEventListener()`), the events-supported-by-all-HTML-elements reference table, the `Event` object, listening on multiple targets via event bubbling, dispatching events programmatically with `dispatchEvent()`, creating/triggering custom events with `CustomEvent`, removing listeners with `removeEventListener()`, preventing default actions with `preventDefault()` | `bk06/ch10/bk06ch10_listing01.html` .. `_listing03.html` | **resolved** (old `Book6/Chapter10` → new ch10, confirmed — proof arrived in Batch 6, closing out the dangling forward-references noted in ch01/ch08) — renamed `Listing100N.html` → `bk06ch10_listingNN.html`. All three listings (Listing 10-1 "Setting an Event Listener"/mouse tracking, Listing 10-2 "Using Event Bubbling to Detect Events on Multiple Elements", Listing 10-3 "Firing a Built-In Event"/`dispatchEvent()`+focus) already matched the proof **byte-for-byte** — no content fixes needed, only the folder move/rename. Verified all three with a `jsdom`-based `node` simulation (installed the real `jsdom` package for this chapter, since actual DOM event-bubbling/dispatch behavior needed a real event system rather than a hand-stubbed one): listing01 dispatches a synthetic `mousemove` event with `offsetX`/`offsetY` set to 204/33 onto `#tracking-area` and confirms `#current-position`'s `innerHTML` updates to exactly `x: 204; y: 33`, matching Figure 10-2's console example; listing02 dispatches a bubbling `click` on the nested second `<button>` ("No, Click Me") and confirms it correctly bubbles up to fire the `#button-group` container's listener (captured the stubbed `alert('clicked')` call); listing03 confirms that its own `dispatchEvent(focusEvent)` call synchronously invokes the `focus` listener with `e.target.value === 'this is a test'` (captured via a `jsdom` `VirtualConsole`), matching the chapter's documented console output. Also full-text-searched the entire 16-page proof (`pdftotext -layout`) for `Vehicle`/`moveForward`/`speed` while re-investigating the long-deferred `Listing0706.js` question (see the bk06ch07 row and Deferred section) — zero matches, confirming that file doesn't belong here either. |
 
 ## Deferred (no proofs yet)
 
-- `Book6/Chapter10/` (`Listing1001.html`-`Listing1003.html`: mouse tracking, event bubbling, `dispatchEvent`) — investigated against all 9 proofed bk06 chapters (full-text search for `addEventListener`/`mousemove`/`bubbling`/`dispatchEvent` across every bk06ch0N proof) and found in none of them, despite two forward-references to a "Chapter 10" on events inside ch01 (p.466) and ch08 (p.589). Since the new minibook only has 9 proofed chapters, this looks like manuscript content for an Events chapter that was cut (or never proofed) late in production, leaving dangling cross-references behind. Left in place untouched, pending clarification — see the bk06 section above for details.
 - `Book7/` (React `my-react-app`, Vue `vue-project`) → likely bk07
 - `Book8/` — empty, unclear purpose
 - `Book4/chapter01/` (`trivia-game/` — `index.html`/`style.css`/`data/trivia.js` — plus
@@ -194,33 +197,34 @@ into any of the 9 real chapters — its content (mouse tracking, bubbling,
   are now empty of files (everything moved into `bk02/`) but the directories themselves
   may still exist as empty shells — harmless, git doesn't track them.
 
-- `Book6/Chapter7/Listing0706.js` (a `function Vehicle(speed)` constructor with a `this.moveForward` method) — investigated against all 9 proofed bk06 chapters (full-text search for `Vehicle`/`moveForward`) and found in none of them. Left in place, untouched; may belong to a chapter this edition never proofed, or may be obsolete 2nd-edition scaffolding.
+- `Book6/Chapter7/Listing0706.js` (a `function Vehicle(speed)` constructor with a `this.moveForward` method) — **OBSOLETE / probably cut 2nd-edition content, not an unresolved mapping.** Investigated against all 9 bk06ch0N proofs during the ch07 pass (Batch 5) and again against the bk06ch10 proof once it arrived in Batch 6 (full-text search via `pdftotext -layout` for `Vehicle`/`moveForward`/`speed`) — zero matches in any of the now-complete 10 bk06 chapters. Since bk06 is fully proofed (all 10 chapters, across Batches 4-6) and this file still doesn't match anything, it's very unlikely to belong to any future bk06 proof — it almost certainly is leftover 2nd-edition scaffolding that didn't carry into the 3rd edition. Left in place, untouched, in `Book6/Chapter7/`.
 
 ## Status: bk01-bk06 fully reconciled
 
-With bk06ch01-ch09 resolved above, **six proofed minibooks (bk01, bk02, bk03, bk04,
-bk05, bk06 - 34 chapters total) are now fully reconciled** against their 3rd-edition
+With bk06ch01-ch10 resolved above, **six proofed minibooks (bk01, bk02, bk03, bk04,
+bk05, bk06 - 35 chapters total) are now fully reconciled** against their 3rd-edition
 page proofs and committed on `3e-code-update`. `Book1`-`Book3` and `Book5` (the old
 2nd-edition-derived folders for those minibooks) have been fully migrated and
 removed; `Book4` retains only the still-unmatched `chapter01/` content noted in the
 Deferred section above, left in place on purpose pending future proofs; `Book6` has
-been migrated to `bk06/` and removed except for the two genuinely-unplaceable
-leftovers noted in the Deferred section (`Chapter7/Listing0706.js` and the whole of
-`Chapter10/`), which don't match any of the 9 proofed bk06 chapters and are left in
-place rather than force-fit.
+been migrated to `bk06/` **in full** (all 10 chapters — the formerly-mysterious
+`Chapter10/` was resolved and moved into `bk06/ch10/` in the Batch 6 pass) and
+removed except for the one remaining leftover noted in the Deferred section
+(`Chapter7/Listing0706.js`, now marked OBSOLETE since bk06 is fully proofed and it
+still doesn't match anything).
 
 A key finding from the bk06 pass: the working theory carried into this pass (that
 old `Book6`'s chapter-numbering gap at "4" signaled a renumbering/merge somewhere in
 the new bk06) turned out to be **wrong**. Content-by-content comparison shows old
-chapters 1, 2, 3, 5, 6, 7, 8, 9 map directly, 1:1, with NO shift, to new bk06ch01,
-ch02, ch03, ch05, ch06, ch07, ch08, ch09 respectively - the gap at old "Chapter4"
-exists simply because the Operators/Expressions chapter (old and new alike) has
-never had companion code, in either edition, so no folder for it was ever needed.
-Old `Chapter10` (DOM events) is the real oddity: its content doesn't match any of
-the 9 proofed chapters, but two dangling proof cross-references ("...Chapter 10 of
-this minibook...") suggest an Events chapter was planned and then cut from this
-edition without those references being updated - see the bk06 section above and the
-Deferred section below for details.
+chapters 1, 2, 3, 5, 6, 7, 8, 9, 10 map directly, 1:1, with NO shift, to new
+bk06ch01, ch02, ch03, ch05, ch06, ch07, ch08, ch09, ch10 respectively - the gap at
+old "Chapter4" exists simply because the Operators/Expressions chapter (old and new
+alike) has never had companion code, in either edition, so no folder for it was ever
+needed. Old `Chapter10` (DOM events) turned out not to be an oddity at all once its
+proof arrived in Batch 6: it's the exact companion code for new bk06ch10 ("Making
+Things Happen with Events"), which resolves the two dangling proof cross-references
+("...Chapter 10 of this minibook...") noted in ch01/ch08 during earlier batches -
+see the bk06 section above for the full resolution.
 
 `bk07` (and whatever `Book8` turns out to be) remain **pending** - no proofs at all
 have been received for bk07 yet. `Book7` is believed to map to React/Vue content
