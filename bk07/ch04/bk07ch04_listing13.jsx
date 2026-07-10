@@ -1,4 +1,4 @@
-import * as styles from './Listing0212.styles.js';
+import * as styles from './bk07ch04_listing12.js';
 function Article({ headline, authorName, bodyText }) {
   return (
     <div>

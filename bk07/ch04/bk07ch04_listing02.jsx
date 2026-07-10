@@ -3,7 +3,7 @@ React.createElement(
   null,
   React.createElement(
     'label',
-    { htmlFor: 'searchterm' },
+    { htmlFor: 'searchTerm' },
     'Search For:',
     React.createElement('input', {
       type: 'text',

@@ -1,4 +1,4 @@
-import Message from './Listing0303';
+import Message from './bk07ch04_listing03.jsx';
 function WelcomeScreen({ loggedIn }) {
   let header;
   if (loggedIn) {
@@ -16,6 +16,6 @@ function WelcomeScreen({ loggedIn }) {
       </header>
     );
   }
-  return { header };
+  return header;
 }
 export default WelcomeScreen;
